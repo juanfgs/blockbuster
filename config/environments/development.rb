@@ -54,6 +54,8 @@ Rails.application.configure do
   config.active_record.verbose_query_logs = true
 
 
+  Rails.application.routes.default_url_options[:host] = "0.0.0.0"
+
   # Raises error for missing translations.
   # config.i18n.raise_on_missing_translations = true
 
