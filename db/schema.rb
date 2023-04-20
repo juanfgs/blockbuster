@@ -40,12 +40,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_19_144243) do
   end
 
   create_table "movies", force: :cascade do |t|
-    t.string "name"
+    t.string "name", null: false
     t.text "description"
     t.string "genre"
-    t.date "release_year"
-    t.integer "available_copies"
-    t.decimal "daily_rental_price"
+    t.integer "release_year"
+    t.integer "available_copies", default: 0, null: false
+    t.decimal "daily_rental_price", default: "0.0", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
