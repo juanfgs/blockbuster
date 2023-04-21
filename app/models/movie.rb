@@ -18,6 +18,6 @@ class Movie < ApplicationRecord
   end
 
   def increase_availability!
-    update_attribute(:available_copies, available_copies - 1)
+    update_attribute(:available_copies, available_copies + 1)
   end
 end
