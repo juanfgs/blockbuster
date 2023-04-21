@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Movie, type: :model do
   before(:all) do
     @valid_parameters = {
-      name: 'The Matrix',
+      name: 'fdsalkjfdsaljk',
       description: 'When computer programmer Thomas Anderson...',
       genre: 'Sci-Fi',
       release_year: 1999,
@@ -40,7 +40,7 @@ RSpec.describe Movie, type: :model do
   describe 'destruction' do
     before(:each) do
       @movie = Movie.create({
-                              name: 'The Matrix',
+                              name: 'fdsajkdljklndcas',
                               description: 'When computer programmer Thomas Anderson...',
                               genre: 'Sci-Fi',
                               release_year: 1999,
