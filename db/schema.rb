@@ -76,7 +76,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_20_185805) do
     t.decimal "total_fine"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index "\"rental\"", name: "index_returnals_on_rental", unique: true
     t.index ["rental_id"], name: "index_returnals_on_rental_id"
   end
 
