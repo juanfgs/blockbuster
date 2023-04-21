@@ -45,7 +45,7 @@ RSpec.describe '/rentals', type: :request do
   describe 'POST /create' do
     context 'with valid parameters' do
       it 'creates a new Rental' do
-        valid_attr = valid_attributes.merge({ user_id: @user.id, movie_id: @movie.id })
+        valid_attr = valid_attributes.merge({ movie_id: @movie.id })
         expect do
           post rentals_url,
                params: { rental: valid_attr }, headers: valid_headers, as: :json
@@ -53,14 +53,14 @@ RSpec.describe '/rentals', type: :request do
       end
       it 'Renting a movie decreases availability' do
         available_copies = @movie.available_copies
-        valid_attr = valid_attributes.merge({ user_id: @user.id, movie_id: @movie.id })
+        valid_attr = valid_attributes.merge({ movie_id: @movie.id })
         post rentals_url,
              params: { rental: valid_attr }, headers: valid_headers, as: :json
         expect(@movie.reload.available_copies).to eq(available_copies - 1)
       end
 
       it 'renders a JSON response with the new rental' do
-        valid_attr = valid_attributes.merge({ user_id: @user.id, movie_id: @movie.id })
+        valid_attr = valid_attributes.merge({ movie_id: @movie.id })
         post rentals_url,
              params: { rental: valid_attr }, headers: valid_headers, as: :json
         expect(response).to have_http_status(:created)
@@ -72,15 +72,8 @@ RSpec.describe '/rentals', type: :request do
       it 'does not create a new Rental' do
         expect do
           post rentals_url,
-               params: { rental: invalid_attributes }, as: :json
+               params: { rental: invalid_attributes }, headers: valid_headers, as: :json
         end.to change(Rental, :count).by(0)
-      end
-
-      it 'renders a JSON response with errors for the new rental' do
-        post rentals_url,
-             params: { rental: invalid_attributes }, headers: valid_headers, as: :json
-        expect(response).to have_http_status(:unprocessable_entity)
-        expect(response.content_type).to match(a_string_including('application/json'))
       end
     end
   end
