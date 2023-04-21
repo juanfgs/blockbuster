@@ -5,7 +5,7 @@ class Movie < ApplicationRecord
   has_many :rentals
 
   def image_url
-    Rails.application.routes.url_helpers.url_for(image) if image.attached?
+    Rails.application.routes.url_helpers.polymorphic_url(image, only_path: true) if image.attached?
   end
 
   scope :filter_by_release_year, ->(release_year) { where release_year: }
