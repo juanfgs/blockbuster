@@ -1,0 +1,444 @@
+{
+	"info": {
+		"_postman_id": "d42b4402-64a9-4123-8cc5-6ec1a96ed372",
+		"name": "Blockbuster API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20097904"
+	},
+	"item": [
+		{
+			"name": "Create Movie",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "movie[available_copies]",
+							"value": "2",
+							"type": "text"
+						},
+						{
+							"key": "movie[daily_rental_price]",
+							"value": "7.5",
+							"type": "text"
+						},
+						{
+							"key": "movie[description]",
+							"value": "Lorem ipsum dolor sit ameth",
+							"type": "text"
+						},
+						{
+							"key": "movie[genre]",
+							"value": "Horror",
+							"type": "text"
+						},
+						{
+							"key": "movie[name]",
+							"value": "Dark Souls",
+							"type": "text"
+						},
+						{
+							"key": "movie[release_year]",
+							"value": "2008",
+							"type": "text"
+						},
+						{
+							"key": "movie[image]",
+							"type": "file",
+							"src": "/home/juanfgs/Imágenes/Fondos de escritorio/ghmrbo833oua1.jpg"
+						}
+					]
+				},
+				"url": {
+					"raw": "0.0.0.0:3000/movies",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "3000",
+					"path": [
+						"movies"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Show Movie Activity",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "5eca050d99aae9f88922e8fc67e11d4e",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "0.0.0.0:3000/movies/2",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "3000",
+					"path": [
+						"movies",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Movie non admin",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "a7cd051579c041055efbe3034b438dce",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "movie[available_copies]",
+							"value": "2",
+							"type": "text"
+						},
+						{
+							"key": "movie[daily_rental_price]",
+							"value": "7.5",
+							"type": "text"
+						},
+						{
+							"key": "movie[description]",
+							"value": "Lorem ipsum dolor sit ameth",
+							"type": "text"
+						},
+						{
+							"key": "movie[genre]",
+							"value": "Horror",
+							"type": "text"
+						},
+						{
+							"key": "movie[name]",
+							"value": "Dark Souls",
+							"type": "text"
+						},
+						{
+							"key": "movie[release_year]",
+							"value": "2008",
+							"type": "text"
+						},
+						{
+							"key": "movie[image]",
+							"type": "file",
+							"src": "/home/juanfgs/Imágenes/Fondos de escritorio/ghmrbo833oua1.jpg"
+						}
+					]
+				},
+				"url": {
+					"raw": "0.0.0.0:3000/movies",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "3000",
+					"path": [
+						"movies"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "See Movies",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "f368c9c82baa2c1ad45775848f056cc2",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "",
+							"value": "release_year",
+							"description": "2019",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "0.0.0.0:3000/movies/?movie[release_year]=2019",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "3000",
+					"path": [
+						"movies",
+						""
+					],
+					"query": [
+						{
+							"key": "movie[release_year]",
+							"value": "2019"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Rent A Movie",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "f368c9c82baa2c1ad45775848f056cc2",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"movie_id\": 2,\n\"rental_days\": 6\n\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "0.0.0.0:3000/rentals",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "3000",
+					"path": [
+						"rentals"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Return a Movie",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "f368c9c82baa2c1ad45775848f056cc2",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "returnal[rental_id]",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "movie[daily_rental_price]",
+							"value": "7.5",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "movie[description]",
+							"value": "Lorem ipsum dolor sit ameth",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "movie[genre]",
+							"value": "Horror",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "movie[name]",
+							"value": "Dark Souls",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "movie[release_year]",
+							"value": "2008",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "movie[image]",
+							"type": "file",
+							"src": "/home/juanfgs/Imágenes/Fondos de escritorio/ghmrbo833oua1.jpg",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "0.0.0.0:3000/returnals/",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "3000",
+					"path": [
+						"returnals",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Generate Key",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "secreto",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "juanfgs@gmail.com",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "0.0.0.0:3000/api-keys",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "3000",
+					"path": [
+						"api-keys"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Generate Key Regular User",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "secreto2",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "pepito@gmail.com",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "pepito@gmail.com",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "password",
+							"value": "secreto2",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "0.0.0.0:3000/api-keys",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "3000",
+					"path": [
+						"api-keys"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
