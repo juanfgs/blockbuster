@@ -2,12 +2,15 @@ class MoviesController < ApplicationController
   before_action :set_movie, only: %i[show update destroy]
   include ApiKeyAuthenticatable
 
-  prepend_before_action :authenticate_with_api_key!, only: %i[index show]
-  prepend_before_action :authenticate_with_admin_key!, only: %i[create update destroy]
+  prepend_before_action :authenticate_with_api_key!, only: %i[index]
+  prepend_before_action :authenticate_with_admin_key!, only: %i[show create update destroy]
   # GET /movies
   def index
-    @movies = Movie.all
-
+    @movies = if params.has_key? :movie
+                Movie.filter(params.fetch(:movie).slice(:release_year, :name, :description, :genre))
+              else
+                Movie.all
+              end
     render json: @movies.as_json(methods: :image_url)
   end
 

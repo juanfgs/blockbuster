@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_20_173550) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_20_185805) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -61,6 +61,24 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_20_173550) do
     t.index ["name"], name: "index_movies_on_name", unique: true
   end
 
+  create_table "rentals", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "movie_id", null: false
+    t.integer "rental_days"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["movie_id"], name: "index_rentals_on_movie_id"
+    t.index ["user_id"], name: "index_rentals_on_user_id"
+  end
+
+  create_table "returnals", force: :cascade do |t|
+    t.integer "rental_id", null: false
+    t.decimal "total_fine"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["rental_id"], name: "index_returnals_on_rental_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "name", null: false
     t.string "email", null: false
@@ -73,4 +91,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_20_173550) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "rentals", "movies"
+  add_foreign_key "rentals", "users"
+  add_foreign_key "returnals", "rentals"
 end
